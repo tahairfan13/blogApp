@@ -12,7 +12,7 @@ class PagesTest < ActionDispatch::IntegrationTest
  end	
 
 test "should get home" do 
-	get pages_home_url #Where 'pages' is the controller & 'home' is the action
+	get pages_home_url #Where 'pages' is the controller & 'home' is the action.. or pages/home
 	assert_response :success #got an error when write 'sucess' REMEMBER should be exact "success"
 
 end	
