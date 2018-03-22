@@ -1,0 +1,21 @@
+
+ <h1 align="center">Listing all recipes</h1>
+<hr>
+<% @recipes.each do |recipe| %>
+  <div class="card">
+
+    <div class="col-md-2">
+      <section class="center">
+        <img src=assert-url('image.jpg')>
+      </section>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title"><%= recipe.name %></h4>
+      <p class="card-text"><%= truncate(recipe.description, length: 150) %></p> <!--truncate is a methood used to display limited amounts of words   -->
+      <a href="#" class="btn btn-primary">Go somewhere</a> 
+      <p>
+        <span class="quiet"><small>Created  <%= time_ago_in_words(recipe.created_at) %> ago</small></span> <!--time_ago_in_words() transfers the time in days ::Preety cool huh  -->
+	  </p>
+    </div>
+  </div>
+<% end %> 
