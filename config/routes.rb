@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   root "pages#home"
   get "pages/home", to: "pages#home" 
+
+  # Routes for Recipies
   get "recipes" ,to: "recipes#index"
+  get "recipe/:id" , to: "recipes#show" ,as: "recipe"  # as: is used to set the path 
 
 end
