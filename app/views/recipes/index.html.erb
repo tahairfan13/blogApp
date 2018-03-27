@@ -1,20 +1,25 @@
-
- <h1 align="center">Listing all recipes</h1>
-<hr>
+<!-- using HTML like a simple function and sending TITLE as a parameters -->
+<%= render 'shared/page_title',title: "showing all recipies" %>
 <% @recipes.each do |recipe| %>
+
+
+
   <div class="card">
 
     <div class="col-md-2">
-      <section class="center">
-        <img src=assert-url('image.jpg')>
+      <section class="center thumbnail">
+      <%=  gravatar_for(recipe.chef) %>
       </section>
     </div>
     <div class="card-body">
       <h4 class="card-title"><%=link_to recipe.name ,recipe_path(recipe) %></h4>
-      <p class="card-text"><%= truncate(recipe.description, length: 150) %></p> <!--truncate is a methood used to display limited amounts of words   -->
+      <p class="card-text"><%= truncate(recipe.description, length: 150) %></p> <!--truncate is a methood used to display limited amounts of words in a view  -->
       <p>
         <span class="quiet"><small>Created  <%= time_ago_in_words(recipe.created_at) %> ago</small></span> <!--time_ago_in_words() transfers the time in days ::Preety cool huh  -->
-	  </p>
+    </p>
     </div>
   </div>
+
+
+
 <% end %> 

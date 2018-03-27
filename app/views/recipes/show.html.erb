@@ -1,22 +1,33 @@
+<!-- using HTML like a simple function and sending TITLE as a parameters -->
+<%= render 'shared/page_title' ,title: @recipe.name %>
 
-<h1 align="center">Recipe Name: <%= @recipe.name.capitalize %></h1>
-<hr>
 
 <div class="well col-md-8 col-md-offset-2">
-  <h4 class="center description"><strong>Description: </strong></h4>
+  <h4 class="center description"><strong>Steps: </strong></h4>
   <hr />
-  <%= @recipe.description %>
+  <%= simple_format(@recipe.description) %>
   <hr />
   <div class="pull-right">
     <p class="center">
-      Created by:
+      <em>Created by:</em>
     </p>
-    <p>
-      <small><%= @recipe.chef.chefname %></small>
-      <div class="pull-right">
-        <%= time_ago_in_words(@recipe.created_at) %> ago
-      </div>
+    <p class="center">
+  <!-- gravatar_for is the methood in helper class  -->
+    <%= link_to gravatar_for(@recipe.chef), recipes_path %>
+    </p>
+    <p class="center">
+      <small><%= @recipe.chef.chefname.capitalize %></small>
+      <div class="pull-right"><%= time_ago_in_words(@recipe.created_at) %> ago</div>
     </p>
   </div>
+  <!-- adding show and delete buttons -->
+    <div class="recipe-actions">
+  <%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: 'btn btn-xs btn-warning' %>
+  <%= link_to "Delete this recipe",recipe_path(@recipe), method: :delete , class: 'btn btn-xs btn-danger' %>
+  <%= link_to "Back to recipes", recipes_path, class: "btn btn-xs btn-primary"  %>
+  <!-- END adding show and delete buttons -->
+</div>  
 </div>
+
+
 

@@ -1,0 +1,53 @@
+<%= render 'shared/page_title' , title: "add a new recipe" %>
+
+
+<!-- ERROR MASSAGE START  -->
+<% if @recipe.errors.any? %>
+
+	<div class="alert alert-danger" role="alert">
+   		<h2 class="panel-title">
+   			<!-- As name suggest the pluralize methoods check if their is 1 error if yes it will say ERROR if more than 1 will say ERRORS -->
+             <%= pluralize(@recipe.errors.count, "error") %> 
+             prohibited this <%= @recipe.class %> from being saved:
+        </h2>
+
+			<%  @recipe.errors.full_messages.each do |msg| %>
+			<li> <%= msg %> </li>
+			<%end %>
+	</div>
+<%end %>
+
+
+
+
+<!-- ERROR MASSAGE END  -->
+
+
+
+<%= form_for @recipe do |f| %>
+<div class="form-group">
+	<%=f.label :name  %>	
+	<%=f.text_field :name ,class: "form-control" ,placeholder: "Name of the recipe" , autofocus:true %>
+</div>
+<div class="form-group">
+	<%=f.label :description  %>	
+	<%=f.text_area :description ,class: "form-control" ,placeholder: "Enter steps to create recipe",rows: 10 %>
+
+</div>
+
+<div class="form-group">
+	<!-- NO need to put , before class in submit -->
+	<%=f.submit class: 'btn btn-primary btn-lg' %> 
+
+</div>
+
+   
+<div class="form-group cancel">
+ 	[ <%= link_to "Cancel request and return to recipes listing", recipes_path %> ]
+</div>
+
+
+<% end %>
+
+
+

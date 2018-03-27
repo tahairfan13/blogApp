@@ -1,0 +1,15 @@
+
+<!-- This methood is created the flash methoods dynamic by assigning the KEY or in this case NAME to the command of bootstrao
+Like see this
+we have set :success as key of the bootstrap
+alert_success is for success commands in bootstrap
+  -->
+
+
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-<%= name %>"> 
+      	<!-- Below methood is used to apply the close property to our flash -->
+        <a href="#" class="close" data-dismiss="alert">×</a>
+        <%= msg %>
+      </div>
+    <% end %>
