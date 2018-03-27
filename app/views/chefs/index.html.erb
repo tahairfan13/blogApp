@@ -1,0 +1,31 @@
+<%= render 'shared/page_title' ,title: "List of All Chefs" %>
+
+<div align="center">
+  <%= will_paginate %>
+</div>
+
+
+<% @chefs.each do |chef| %>
+
+
+
+  <div class="card" align="center">
+
+    <div class="col-md-2">
+      <section class="center thumbnail">
+      <%= link_to gravatar_for(chef),chef_path(chef) %>
+      </section>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title"><%=link_to chef.chefname.capitalize ,chef_path(chef) %></h4>
+      <p class="card-text"><%=  pluralize(chef.recipes.count, "recipes") if chef.recipes %></p> 
+    </div>
+  </div>
+
+
+
+<% end %> 
+
+<div align="center">
+  <%= will_paginate %>
+</div>

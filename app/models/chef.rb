@@ -8,5 +8,9 @@ class Chef < ApplicationRecord
              format: { with: VALID_EMAIL_REGEX },
              uniqueness: { case_sensitive: false }
 
-  has_many :recipes           
+
+  has_many :recipes
+
+  has_secure_password 
+  validates :password ,presence: true ,length: {minimum: 5}, allow_nil: true #allow_nil: will allow the respected field to be blank after 1st iteration   
 end

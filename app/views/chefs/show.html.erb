@@ -1,0 +1,9 @@
+<%= render 'shared/page_title',title: "#{@chef.chefname}'s profile" %>
+
+<div align="center">
+    <%= gravatar_for @chef, size: 200 %></div>
+
+<!-- <hr>    --> 
+<br>
+<h2 align="center"> <%= @chef.chefname.capitalize %>'s Recipes</h2>
+<%= render 'recipes/recipies',obj:@chef.recipes %>

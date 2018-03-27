@@ -6,7 +6,7 @@ class ChefTest < ActiveSupport::TestCase
   # end
 
   def setup
-    @chef=Chef.new(chefname:"kamwal",email:"kanwal@gmail.com")
+    @chef=Chef.new(chefname:"kamwal",email:"kanwal@gmail.com",password:"password",password_confirmation: "password")
   end
 
   test "chef should be valid" do
@@ -32,6 +32,9 @@ class ChefTest < ActiveSupport::TestCase
     @chef.email="a"*256
     assert_not @chef.valid?
   end
+
+  
+  
 
   test "should reject invalid addresses" do
     invalid_emails = %w[mashrur@example mashrur@example,com mashrur.name@gmail. joe@bar+foo.com]

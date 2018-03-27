@@ -1,0 +1,53 @@
+<!-- ERROR MASSAGE START  -->
+<% if @chef.errors.any? %>
+
+	<div class="alert alert-danger" role="alert">
+   		<h2 class="panel-title">
+   			<!-- As name suggest the pluralize methoods check if their is 1 error if yes it will say ERROR if more than 1 will say ERRORS -->
+             <%= pluralize(@chef.errors.count, "error") %> 
+             prohibited this <%= @chef.class %> from being saved:
+        </h2>
+
+			<%  @chef.errors.full_messages.each do |msg| %>
+			<li> <%= msg %> </li>
+			<%end %>
+	</div>
+<%end %>
+
+
+
+
+<!-- ERROR MASSAGE END  -->
+
+
+
+<%= form_for @chef do |f| %>
+<div class="form-group">
+	<%=f.label :chefname, "Name"  %>	
+	<%=f.text_field :chefname ,class: "form-control" ,placeholder: "Name of the Chef" , autofocus:true %>
+</div>
+<div class="form-group">
+	<%=f.label :email  %>	
+	<%=f.email_field :email ,class: "form-control" ,placeholder: "Enter your email" %>
+</div>
+
+<div class="form-group">
+	<%=f.label :password  %>	
+	<%=f.password_field :password ,class: "form-control" ,placeholder: "Enter your password"  %>
+</div>
+<div class="form-group">
+	<!-- VVV IMP password_conformation, and password are two virtual methoods provided by "has_secure_password" -->
+	<%= f.label :password_confirmation, "Confirm Password" %> 
+	<%=f.password_field :password_confirmation ,class: "form-control" ,placeholder: "Confirm your password" %>
+</div>
+
+<div class="form-group">
+	<!-- BELOW METHOOD Dynamically checks if asccount is present or not?? and make a response likewise -->
+	<%= f.submit(@chef.new_record? ? "Create my account" : "Update my account", 
+                            class: "btn btn-primary btn-lg btn-xlarge") %>
+
+</div>
+
+
+
+<% end %>

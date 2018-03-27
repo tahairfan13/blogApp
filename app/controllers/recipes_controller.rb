@@ -1,7 +1,8 @@
 class RecipesController < ApplicationController
 
 def index
-@recipes=Recipe.all
+#@recipes=Recipe.all #will display all the data at once  
+@recipes=Recipe.paginate(page:params[:page],per_page: 5) #used for pagination
 end
 
 def show

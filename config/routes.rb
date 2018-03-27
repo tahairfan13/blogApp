@@ -16,4 +16,8 @@ Rails.application.routes.draw do
   # delete "recipes/:id" ,to: "recipes#destroy" ,as: "recipee"
     resources :recipes
 
+    get '/signup', to: 'chefs#new'
+    resources :chefs, except: [:new] #we don't want "chefs/new" we want /signup so we do like this
+
+
 end
