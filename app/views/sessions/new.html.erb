@@ -1,0 +1,23 @@
+
+<%= render "shared/page_title",title: "Login" %>
+
+ <!-- assigning the url login_path means the same route using POST-->
+<%= form_for :session_request_form ,url: login_path do |f|%> 
+
+<div class="form-group">
+	<%=f.label :email  %>	
+	<%=f.email_field :email ,class: "form-control" ,placeholder: "Enter your email" %>
+</div>
+
+<div class="form-group">
+	<%=f.label :password  %>	
+	<%=f.password_field :password ,class: "form-control" ,placeholder: "Enter your password"  %>
+</div>
+
+<div class="form-group">
+
+	<%= f.submit "Login", class: "btn btn-primary" %>
+
+</div>
+
+<%end%>

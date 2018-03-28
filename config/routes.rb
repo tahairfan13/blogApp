@@ -20,4 +20,12 @@ Rails.application.routes.draw do
     resources :chefs, except: [:new] #we don't want "chefs/new" we want /signup so we do like this
 
 
+    #Routes for login/logout
+
+    get    "/login"  ,to: "sessions#new" #session#new will send a POST request
+    post   "/login"  ,to: "sessions#create"
+    delete "/logout" ,to: "sessions#destroy" 
+
+    #Routes for login/logout END
+
 end

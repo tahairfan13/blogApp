@@ -22,8 +22,11 @@
   </div>
   <!-- adding show and delete buttons -->
     <div class="recipe-actions">
-  <%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: 'btn btn-xs btn-warning' %>
-  <%= link_to "Delete this recipe",recipe_path(@recipe), method: :delete , class: 'btn btn-xs btn-danger' %>
+<!-- ADDING AUTHERIZATIONS -->
+      <% if logged_in? && @recipe.chef.email == current_user.email %>
+         <%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: 'btn btn-xs btn-warning' %>
+         <%= link_to "Delete this recipe",recipe_path(@recipe), method: :delete , class: 'btn btn-xs btn-danger' %>
+      <% end %>
   <%= link_to "Back to recipes", recipes_path, class: "btn btn-xs btn-primary"  %>
   <!-- END adding show and delete buttons -->
 </div>  
