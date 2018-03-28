@@ -1,6 +1,6 @@
 class ChefsController < ApplicationController
 
-before_action :require_user, except: [:index,:show] # performs the action before runing the methood
+before_action :require_user, except: [:index,:show,:new,:create] # performs the action before runing the methood
 
 
 def index
@@ -55,8 +55,9 @@ end
 def destroy
 @chef=Chef.find(params[:id])
 
-#user defined methood to check the authentication
-chef_authentcation
+if !@chef.admin # we need to make sure we don't delete the admin
+ admin_authentication
+end
 
 @chef.destroy
 flash[:danger]="chef and all associated recipies deleted"
@@ -74,12 +75,21 @@ end
 
 def chef_authentcation
 
-	if current_user != @chef
+	if current_user != @chef && !current_user.admin? #current_user.admin?  is used to add the admin functionality...it is boolean
 		flash[:danger]="Correct user must be signed in"
 		redirect_to chefs_path
 	end	
 	
 end
+
+def admin_authentication
+
+	if logged_in? && !current_user.admin
+		flash[:success]="Only admin can perform such an action"
+		redirect_to chefs_path
+	end	
+
+end	
 
 
 end

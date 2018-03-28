@@ -72,7 +72,7 @@ params.require(:recipe).permit(:name,:description) #ask
 end
 
 def check_for_sameUser_Authorization
-  if current_user!= @recipe.chef
+  if current_user!= @recipe.chef && !current_user.admin?
   flash[:danger]= "Correct user must be logged in!"
   redirect_to recipes_path
   end

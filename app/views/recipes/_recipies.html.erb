@@ -18,9 +18,11 @@
     </p>
         <div class="recipe-actions">
         <!-- ADDING AUTHERIZATIONS -->
-      <% if logged_in? && recipe.chef.email == current_user.email %>
+        <!--  current_user.admin gives a boolean  -->
+      <% if logged_in? && ((recipe.chef.email == current_user.email) || current_user.admin?)  %>
          <%= link_to "Edit this recipe", edit_recipe_path(recipe), class: 'btn btn-xs btn-warning' %>
          <%= link_to "Delete this recipe",recipe_path(recipe), method: :delete , class: 'btn btn-xs btn-danger' %>
+
       <% end %>
       </div>
 
