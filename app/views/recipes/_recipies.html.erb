@@ -12,9 +12,32 @@
     </div>
     <div class="card-body">
       <h4 class="card-title"><%=link_to recipe.name ,recipe_path(recipe) %></h4>
-      <p class="card-text"><%= truncate(recipe.description, length: 150) %></p> <!--truncate is a methood used to display limited amounts of words in a view  -->
+      <p class="card-text"><%= truncate(recipe.description, length: 150) %></p> <!--truncate is a methood used to display limited amounts of 
+      words in a view  -->
+
+<!-- CHECK LECTURE 140 to understrand the upper command...basically it is a methood ..MANY TO MANY unable to do the standard way -->
+
+<!-- CHeck _ingredient.html.erb in 'ingredients' folder -->
+
+        <% if recipe.ingredients.any? %>
+         <p>Ingredients: <%= render recipe.ingredients %></p>
+      <% end %>
+      <!-- what it does it show the Ingredients next to the Recipies -->
+
+<!-- CHECK LECTURE 140 to understrand the upper command...basically it is a methood ..MANY TO MANY unable to do the standard way -->
+
       <p>
         <span class="quiet"><small>Created  <%= time_ago_in_words(recipe.created_at) %> ago</small></span> <!--time_ago_in_words() transfers the time in days ::Preety cool huh  -->
+        <br>
+        <span class="quiet"><small> <%= pluralize(recipe.comments.count, 'Comment') %></small></span>
+        <br>
+
+
+
+        <span class="quiet"><small>By <%=recipe.chef.chefname.capitalize  %></small></span>
+        <br>
+
+
     </p>
         <div class="recipe-actions">
         <!-- ADDING AUTHERIZATIONS -->

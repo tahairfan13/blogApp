@@ -1,0 +1,11 @@
+<!-- Refer to comments in video 146 -->
+<div align="center">
+  <%= will_paginate comments %>
+</div>
+<% comments.each do |comment| %>
+  <%= render(partial: 'comments/comment', object: comment) %>
+  <hr>
+<% end %>
+<div align="center">
+  <%= will_paginate comments %>
+</div>

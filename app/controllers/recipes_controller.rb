@@ -10,7 +10,10 @@ def index
 end
 
 def show
-@recipe=Recipe.find(params[:id])	
+@recipe=Recipe.find(params[:id])
+@comment=Comment.new	
+@comments = @recipe.comments.paginate(page: params[:page], 
+                                                per_page: 5)
 end
 
 def new
@@ -68,7 +71,7 @@ end
 private
 
 def recipe_params
-params.require(:recipe).permit(:name,:description) #ask
+  params.require(:recipe).permit(:name, :description, ingredient_ids: [])
 end
 
 def check_for_sameUser_Authorization

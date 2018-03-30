@@ -1,0 +1,37 @@
+<%= render 'shared/page_title', title: "List of all ingredients" %>
+
+<div align="center">
+  <%= will_paginate %>
+</div>
+
+
+<% @ingredients.each do |ing| %>
+
+
+
+  <div class="card" align="center">
+
+    <div class="card-body">
+      <h4 class="card-title"><%=link_to ing.name.capitalize ,ingredient_path(ing) %></h4>
+      <!-- ing.recipes is the many to many relationship -->
+      <p class="card-text"><%=  pluralize(ing.recipes.count, "recipes") if ing.recipes %></p> 
+
+
+    <% if logged_in? && current_user.admin%>
+
+     <p class="card-text">
+       <%= link_to "Edit this ingredient",edit_ingredient_path(ing)  %>
+     </p>
+
+      <% end %>
+
+    </div>
+  </div>
+
+
+
+<% end %> 
+
+<div align="center">
+  <%= will_paginate %>
+</div>

@@ -1,0 +1,15 @@
+<!-- Refer to comments in video 146 -->
+
+<div class="row">
+  <div class="col-md-2">
+    <section class="chef_info center">
+      <%= gravatar_for(comment.chef) %>
+    </section>
+  </div>
+  <div class="col-md-8 well">
+    <p><%= comment.description %></p>
+    <p>
+      <span class="quiet"><small>Created:  <%= comment.chef.chefname %></small></span>
+    </p>
+  </div>
+</div>

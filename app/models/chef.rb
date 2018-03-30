@@ -14,4 +14,6 @@ class Chef < ApplicationRecord
   has_secure_password 
   validates :password ,presence: true ,length: {minimum: 5}, allow_nil: true #allow_nil: will allow the respected field to be blank after 1st iteration   
   #allow_nil is used to ensure that the respected field does not need to be added every time in UPdATE
+  has_many :comments , dependent: :destroy  #means if Chef is destroyed,,,destroy the comment as well
+
 end

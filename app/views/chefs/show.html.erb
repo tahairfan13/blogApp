@@ -5,5 +5,10 @@
 
 <!-- <hr>    --> 
 <br>
+<%if @chef.recipes.count==0 %>
+<h2 align="center">no recipe to show</h2>
+<%else%>
 <h2 align="center"> <%= @chef.chefname.capitalize %>'s Recipes</h2>
+<%end%>
+
 <%= render 'recipes/recipies',obj:@chef.recipes %>

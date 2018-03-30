@@ -1,0 +1,38 @@
+
+<% if @ingredient.errors.any? %>
+
+	<div class="alert alert-danger" role="alert">
+   		<h2 class="panel-title">
+   			<!-- As name suggest the pluralize methoods check if their is 1 error if yes it will say ERROR if more than 1 will say ERRORS -->
+             <%= pluralize(@ingredient.errors.count, "error") %> 
+             prohibited this <%= @ingredient.class %> from being saved:
+        </h2>
+
+			<%  @ingredient.errors.full_messages.each do |msg| %>
+			<li> <%= msg %> </li>
+			<%end %>
+	</div>
+<%end %>
+
+
+
+
+<!-- ERROR MASSAGE END  -->
+
+
+
+<%= form_for @ingredient do |f| %>
+<div class="form-group">
+	<%=f.label :name, "Name"  %>	
+	<%=f.text_field :name ,class: "form-control" ,placeholder: "Enter the ingredient" , autofocus:true %>
+</div>
+
+<div class="form-group">
+	<!-- BELOW METHOOD Dynamically checks if asccount is present or not?? and make a response likewise -->
+	<%= f.submit class: "btn btn-primary btn-lg btn-xlarge"%>
+
+</div>
+
+
+
+<% end %>

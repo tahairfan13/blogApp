@@ -84,8 +84,8 @@ end
 
 def admin_authentication
 
-	if logged_in? && !current_user.admin
-		flash[:success]="Only admin can perform such an action"
+	if logged_in? && !current_user.admin #! bcz we dont want to delete the admin
+		flash[:danger]="Only admin can perform such an action"
 		redirect_to chefs_path
 	end	
 

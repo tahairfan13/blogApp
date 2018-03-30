@@ -14,7 +14,13 @@ Rails.application.routes.draw do
   # patch  "recipes/:id"      ,to: "recipes#update" #Remember update is called with edit
 
   # delete "recipes/:id" ,to: "recipes#destroy" ,as: "recipee"
-    resources :recipes
+
+
+resources :recipes do # bcz we want comments to be created from recipies
+    resources :comments, only: [:create]
+  end
+
+
 
     get '/signup', to: 'chefs#new'
     resources :chefs, except: [:new] #we don't want "chefs/new" we want /signup so we do like this
@@ -27,5 +33,7 @@ Rails.application.routes.draw do
     delete "/logout" ,to: "sessions#destroy" 
 
     #Routes for login/logout END
+
+    resources :ingredients ,except: [:destroy]
 
 end
